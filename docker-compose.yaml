@@ -1,0 +1,69 @@
+
+services:
+  securitygeneltekrar:
+    image: kumandabey/securitygeneltekrar:v1
+    container_name: securitygeneltekrar
+    ports:
+      - 8080:8080
+    networks:
+      - ortakag
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      - spring.datasource.url=jdbc:postgresql://postgresdb:5432/postgres
+      - eureka.client.serviceUrl.defaultZone=http://eurekaserver:8761/eureka
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+      eurekaserver:
+        condition: service_healthy
+
+
+
+
+  postgresdb:
+    image: postgres
+    container_name: postgresdb
+    ports:
+      - 5432:5432
+    networks:
+      - ortakag
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+
+  eurekaserver:
+    image: eurekaservergeneltekrar:0.0.1-SNAPSHOT
+    container_name: eurekaserver
+    ports:
+      - 8761:8761
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - ortakag
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:8761/actuator/health ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  ortakag:
+    driver: bridge
+
