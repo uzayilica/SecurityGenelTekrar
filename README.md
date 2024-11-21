@@ -1,13 +1,24 @@
-﻿# SecurityGenelTekrar
- Genel Tekrar Kapsamında
- CSRF TOKEN KULLANIMI
- LOGIN REGISTER MEKANİZMASI HEM AUTHENTICATION PROVIDER HEMDE USERDETAILSERVIS YAPILANDIRMASI
- OAUT2 LOGIN REGISTER ISLEMLERINI ICERIR
- DTO ENTITY ISLEMLERI
- EXCEPTION HATA YÖNETIMI(VALIDATION)
- JSON WEB TOKEN KULLANIMI (JWT SERVICE +JWT FILTRE)
- BASE ENTITY KULLANIMI
- SPRING DATA JPA REPOSITORY KULLANIMI
- SECURITYCONFONFIG YAPILANDIRMASINI ICERIR
- 
-  
+# Security Genel Tekrar
+
+## CSRF Token Kullanımı
+
+## Login Register Mekanizması
+- Authentication Provider
+- UserDetailsService Yapılandırması
+
+## OAuth2 Login Register İşlemleri
+
+## DTO Entity İşlemleri
+
+## Exception Hata Yönetimi
+- Validation
+
+## JSON Web Token Kullanımı
+- JWT Service
+- JWT Filtre
+
+## Base Entity Kullanımı
+
+## Spring Data JPA Repository Kullanımı
+
+## SecurityConfiguration Yapılandırmasını İçerir
